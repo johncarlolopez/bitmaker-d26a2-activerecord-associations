@@ -174,32 +174,60 @@ Music_piece (one) - (many) sheet_music
 Music_piece (many) - (many) instruments
 Sheet music (one) - (one) instrument
 
-  * Music_piece
+  * Music
     * id(integer)
     * name(string)
 ```
-rails g model Shift date:datetime
+rails g model Music name:string
 
-has_and_belongs_to_many :workers
+has_and_belongs_to_many :instruments
 ```    
-  * Sheet_music
+  * Instrument_music
     * id(integer)
     * name(string)
     * music_id(integer)(foreign key)
     * instrument_id(integer)(foreign key)
 ```
-rails g model Shift date:datetime
-
-has_and_belongs_to_many :workers
+rails g migration Create_Instruments_Musics name:string instrument:references music:references
 ```    
   * Instrument
     * id(integer)
     * name(string)
 ```
-rails g model Shift date:datetime
+rails g model Instrument name:string
 
-has_and_belongs_to_many :workers
+has_and_belongs_to_many :musics
 ```    
+# Part 3
+___
+1. Find the album titled "Vinicius De Moraes", and then use an association-provided method to find all its tracks.
+```
+Album.where("title = ?", 'Vinicius De Moraes').first.tracks
+```
+2. Find the artist called "Philip Glass Ensemble", and then use an association-provided method to find all their albums.
+```
+Artist.where("name = ?", 'Philip Glass Ensemble').first.albums
+```
+3. Find the "Brazilian Music" playlist and then use an association-provided method to find all its tracks.
+```
+Playlist.where("name = ?", 'Brazilian Music').first.tracks
+```
+4. Find the "Jazz" genre and then use an association-provided method to find all its tracks.
+```
+Genre.where(name: 'Jazz').first.tracks
+```
+5. Find the track "My Time After Awhile" and then use an association-provided method to find its genre.
+```
+Track.where(name: 'My Time After Awhile').first.genre
+```
+6. Use an association-provided method to find the media type of that same track.
+```
+Track.where(name: 'My Time After Awhile').first.media_type
+```
+7. Use an association-provided method to find the album that track appears on.
+```
+Track.where(name: 'My Time After Awhile').first.album
+```
 # README
 
 
