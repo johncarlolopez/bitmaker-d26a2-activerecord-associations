@@ -121,6 +121,8 @@ ___
     * year(integer)
 ```
 rails g model Film name:string year:integer
+
+has_and_belongs_to_many :viewers
 ```
   * Film_viewing
     * id(integer)
@@ -128,28 +130,43 @@ rails g model Film name:string year:integer
     * viewer_id(integer)(foreign key)
     * date(string)
 ```
-rails g model Film name:string year:integer
+rails g migration Create_Film_Viewer film:references viewer:references date:datetime
 ```
   * Viewer
     * id(integer)
     * name(string)
     * age(integer)
 ```
-rails g model Film name:string year:integer
+rails g model Viewer name:string age:integer
+
+has_and_belongs_to_many :films
 ```
 2.
   * Worker
     * id(integer)
     * name(string)
     * wage(float)
-  * Worker_shift
+```
+rails g model Worker name:string wage:float
+
+has_and_belongs_to_many :shifts
+```
+  * shifts_workers
     * id(integer)
     * worker_id(integer)(foreign key)
     * shift_id(integer)(foreign key)
+```
+rails g migration Create_Shifts_Workers shift:references worker:references
+```
   * Shift
     * id(integer)
     * day(string)
     * time(string)
+  ```
+  rails g model Shift date:datetime
+
+  has_and_belongs_to_many :workers
+  ```    
 
 4. Music piece, sheet music, instrument
 
