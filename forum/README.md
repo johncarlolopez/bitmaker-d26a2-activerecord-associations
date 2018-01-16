@@ -49,17 +49,23 @@ each database will require it's own class
     * name(string)
     * mailing_address(string)
     * email(string)
+    ```
+    rails g model Customer name:string mailing_address:string email:string
+    ```
+    ```
+    in class Customer:
+    has_many :orders
+    ```
   * Order
     * id(integer)
     * date(string)
     * customer_id(integer)(foreign key)
     ```
-    rails g model Discussion name:string message:text user:references
+    rails g model Order date:datetime customer:references
     ```
     ```
-    in class Discussion:
-    belongs_to :user
-    has_many :messages
+    in class Order:
+    belongs_to :customer
     ```
 3. An Eventbrite-style app where people can sell tickets to events they're hosting, or buy tickets to other people's events.
 

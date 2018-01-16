@@ -54,11 +54,11 @@ each database will require it's own class
     * date(string)
     * customer_id(integer)(foreign key)
     ```
-    rails g model Discussion name:string message:text user:references
+    rails g model Discussion name:string message:text customer:references
     ```
     ```
     in class Discussion:
-    belongs_to :user
+    belongs_to :customer
     has_many :messages
     ```
 3. An Eventbrite-style app where people can sell tickets to events they're hosting, or buy tickets to other people's events.
@@ -66,17 +66,42 @@ each database will require it's own class
   * User
     * id(integer)
     * name(string)
+    ```
+    rails g model User name:string
+    ```
+    ```
+    in class Discussion:
+    belongs_to :customer
+    has_many :tickets
+    has_many :events
+    ```
   * Ticket
     * id(integer)
     * buyer_id(integer)(foreign key)
     * event_id(integer)(foreign key)
     * price(float)
+    ```
+    rails g model Ticket buyer:references event:references price:float
+    ```
+    ```
+    in class Discussion:
+    belongs_to :customer
+    has_many :messages
+    ```
   * Event
     * id(integer)
     * name(string)
     * user_id "organizer" (integer)(foreign key)
+    ```
+    rails g model Event name:string user:references
+    ```
+    ```
+    in class Discussion:
+    belongs_to :user
+    has_many :tickets
+    ```
 
-Users (many) - (many) Tickets  // buying
+User (one) - (many) Tickets  // buying
 User (one) - (many) Tickets // selling
 User (one) - (many) Events // one user can hold many events
 Event (one) - (many) Tickets
