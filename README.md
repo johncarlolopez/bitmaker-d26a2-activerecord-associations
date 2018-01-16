@@ -228,6 +228,10 @@ Track.where(name: 'My Time After Awhile').first.media_type
 ```
 Track.where(name: 'My Time After Awhile').first.album
 ```
+
+# Part 4
+___
+Complete
 # README
 
 
