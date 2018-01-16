@@ -177,14 +177,29 @@ Sheet music (one) - (one) instrument
   * Music_piece
     * id(integer)
     * name(string)
+```
+rails g model Shift date:datetime
+
+has_and_belongs_to_many :workers
+```    
   * Sheet_music
     * id(integer)
     * name(string)
     * music_id(integer)(foreign key)
     * instrument_id(integer)(foreign key)
+```
+rails g model Shift date:datetime
+
+has_and_belongs_to_many :workers
+```    
   * Instrument
     * id(integer)
     * name(string)
+```
+rails g model Shift date:datetime
+
+has_and_belongs_to_many :workers
+```    
 # README
 
 
